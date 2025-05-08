@@ -175,7 +175,7 @@ function cerrarSesion() {
 }
 
 // --- Historial ---
-// --- Historial ---
+
 if (document.getElementById('historialTransacciones')) {
   const usuario = obtenerUsuarioActual();
   if (!usuario) {
@@ -203,53 +203,6 @@ if (document.getElementById('historialTransacciones')) {
       historial.appendChild(card);
     });
   }
-}
-
-
-
-// --- Gráfico ---
-
-// --- Gráfico ---
-if (document.getElementById('graficoTransacciones')) {
-  const usuario = obtenerUsuarioActual();
-  if (!usuario) {
-    window.location.href = "index.html"; // Redirigir si no está logueado
-  }
-
-  const transacciones = obtenerTransacciones().filter(t => t.usuarioCuenta === usuario.cuenta);
-
-  const resumen = {
-    Deposito: 0,
-    Retiro: 0,
-    Pago: 0,
-  };
-
-  transacciones.forEach(t => {
-    if (t.tipo.toLowerCase().includes('deposito')) resumen.Deposito++;
-    else if (t.tipo.toLowerCase().includes('retiro')) resumen.Retiro++;
-    else if (t.tipo.toLowerCase().includes('pago')) resumen.Pago++;
-  });
-
-  const ctx = document.getElementById('graficoTransacciones').getContext('2d');
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Depósitos', 'Retiros', 'Pagos'],
-      datasets: [{
-        label: 'Cantidad',
-        data: [resumen.Deposito, resumen.Retiro, resumen.Pago],
-        backgroundColor: ['#4CAF50', '#F44336', '#2196F3'],
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom',
-        },
-      }
-    }
-  });
 }
 
 
