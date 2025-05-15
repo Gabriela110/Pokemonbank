@@ -5,16 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pokémon Bank - Gráfico</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body class="bg-light">
 
 <div class="container py-5">
   <h2 class="text-center mb-4">Resumen de Transacciones</h2>
   <canvas id="graficoTransacciones"></canvas>
+
+  <!-- Botones para simular actualización -->
+  <div class="text-center mt-4">
+    <button class="btn btn-primary mx-2" onclick="actualizarGrafico(5, 10, 7)">Cargar Datos</button>
+    <button class="btn btn-danger mx-2" onclick="actualizarGrafico(0, 0, 0)">Vaciar</button>
+  </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  let grafico; // Variable global para el gráfico
+
+  // Inicializa el gráfico vacío
+  const ctx = document.getElementById("graficoTransacciones").getContext("2d");
+  grafico = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: ['Pago de servicios', 'Depósitos', 'Retiros'],
+      datasets: [{
+        label: 'Número de transacciones',
+        data: [0, 0, 0], // Comienza sin datos
+        backgroundColor: [
+          'rgba(66,134,244,0.6)',
+          'rgba(74,135,72,0.6)',
+          'rgba(229,89,50,0.6)'
+        ],
+        borderColor: [
+          'rgba(66,134,244,1)',
+          'rgba(74,135,72,1)',
+          'rgba(229,89,50,1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+
+  // Función para actualizar los datos del gráfico
+  function actualizarGrafico(pagos, depositos, retiros) {
+    grafico.data.datasets[0].data = [pagos, depositos, retiros];
+    grafico.update();
+  }
+</script>
+
 </body>
 </html>

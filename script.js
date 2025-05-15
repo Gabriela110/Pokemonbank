@@ -179,31 +179,29 @@ function cerrarSesion() {
 if (document.getElementById('historialTransacciones')) {
   const usuario = obtenerUsuarioActual();
   if (!usuario) {
-    window.location.href = "index.html"; // Redirigir si no está logueado
+    window.location.href = "index.html"; // Redirigir si no hay sesión
   }
 
   const transacciones = obtenerTransacciones().filter(t => t.usuarioCuenta === usuario.cuenta);
-  const historial = document.getElementById('historialTransacciones');
+  const tbody = document.getElementById('historialTransacciones');
 
   if (transacciones.length === 0) {
-    historial.innerHTML = '<p class="text-center">No hay transacciones aún.</p>';
+    tbody.innerHTML = `<tr><td colspan="3" class="text-center">No hay transacciones aún.</td></tr>`;
   } else {
+    tbody.innerHTML = ""; // Limpiar por si acaso
     transacciones.forEach(t => {
-      const card = document.createElement('div');
-      card.className = 'col-md-4 mb-4';
-      card.innerHTML = `
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">${t.tipo}</h5>
-            <p class="card-text">Monto: $${t.cantidad.toFixed(2)}</p>
-            <p class="card-text"><small class="text-muted">${t.fecha}</small></p>
-          </div>
-        </div>
+      const fila = document.createElement('tr');
+      fila.innerHTML = `
+        <td>${t.tipo}</td>
+        <td>$${t.cantidad.toFixed(2)}</td>
+        <td>${t.fecha}</td>
       `;
-      historial.appendChild(card);
+      tbody.appendChild(fila);
     });
   }
 }
+
+
 
 
 
