@@ -11,23 +11,32 @@
 
 <div class="container py-5">
   <h2 class="text-center mb-4">Historial de Transacciones</h2>
+
+  <div class="text-center mb-4">
+    <button id="btnImprimirHistorial" class="btn btn-secondary">Imprimir Historial</button>
+  </div>
+
   <div class="table-responsive">
-  <table class="table table-bordered table-striped" id="tablaHistorial">
-    <thead class="table-dark">
-      <tr>
-        <th>Descripción</th>
-        <th>Monto</th>
-        <th>Fecha y Hora</th>
-      </tr>
-    </thead>
-    <tbody id="historialTransacciones">
-      <!-- Las filas se insertan desde script.js -->
-    </tbody>
-  </table>
+    <table class="table table-bordered table-striped" id="tablaHistorial">
+      <thead class="table-dark">
+        <tr>
+          <th>Descripción</th>
+          <th>Monto</th>
+          <th>Fecha y Hora</th>
+        </tr>
+      </thead>
+      <tbody id="historialTransacciones">
+      
+      </tbody>
+    </table>
+  </div>
 </div>
 
-   
+<!-- jsPDF (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script src="script.js"></script>
+
 </body>
 </html>
+

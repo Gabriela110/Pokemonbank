@@ -19,21 +19,44 @@
   
     <div class="row g-4 text-center">
       <div class="col-md-3">
-        <button class="btn btn-success w-100" onclick="realizarTransaccion('deposito')">Depositar</button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-danger w-100" onclick="realizarTransaccion('retiro')">Retirar</button>
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-info w-100" onclick="consultarSaldo()">Consultar Saldo</button>
-      </div>
-      <div class="col-md-3">
-        <button id="btnPagarServicios" class="btn btn-warning w-100">Pagar Servicios</button>
+        <button id="btnDepositar" class="btn btn-success w-100">Depositar</button>
+   </div>
+     <div class="col-md-3">
+      <button id="btnRetirar" class="btn btn-danger w-100">Retirar</button>
+    </div>
+     <div class="col-md-3">
+      <button class="btn btn-info w-100" onclick="consultarSaldo()">Consultar Saldo</button>
+   </div>
+  <div class="col-md-3">
+    <button id="btnPagarServicios" class="btn btn-warning w-100">Pagar Servicios</button>
+  </div>
+    </div>
 
+    <div id="formularioTransaccion" style="display: none;" class="mt-4">
+  <h4 id="tituloTransaccion" class="text-center mb-3"></h4>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="number" id="montoTransaccion" class="form-control" placeholder="Monto">
+      </div>
+      <div class="d-flex justify-content-center">
+        <button id="btnConfirmarTransaccion" class="btn btn-primary me-2">Aceptar</button>
+        <button id="btnCancelarTransaccion" class="btn btn-secondary">Cancelar</button>
       </div>
     </div>
+  </div>
+</div>
+
+
           
+   <div id="formularioTransaccion" style="display: none;">
+        <h3 id="tituloTransaccion"></h3>
+          <input type="number" id="montoTransaccion" placeholder="Monto">
+          <button id="btnConfirmarTransaccion">Aceptar</button>
+          <button id="btnCancelarTransaccion">Cancelar</button>
     </div>
+
     <div id="formularioServicios" style="display:none; margin-top:20px;">
       <div class="card p-4">
         <h5 class="mb-3">Pagar Servicio</h5>
